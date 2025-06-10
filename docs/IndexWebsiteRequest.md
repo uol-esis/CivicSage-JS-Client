@@ -4,6 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**url** | **String** | The URL of the website to index | [optional] 
+**url** | **String** | The URL of the website to index | 
 
 
