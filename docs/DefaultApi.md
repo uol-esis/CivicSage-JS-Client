@@ -4,10 +4,56 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**downloadFile**](DefaultApi.md#downloadFile) | **GET** /download/file | Download indexed file
 [**indexFiles**](DefaultApi.md#indexFiles) | **POST** /index/file | Index new files
 [**indexWebsite**](DefaultApi.md#indexWebsite) | **POST** /index/url | Index Website
 [**searchFiles**](DefaultApi.md#searchFiles) | **POST** /search | Search for files
 
+
+
+## downloadFile
+
+> File downloadFile(fileId)
+
+Download indexed file
+
+This endpoint allows you to download an indexed file by its reference. The file reference is required as a query parameter. 
+
+### Example
+
+```javascript
+import CivicSage from 'civic_sage';
+
+let apiInstance = new CivicSage.DefaultApi();
+let fileId = "fileId_example"; // String | The reference of the file to download
+apiInstance.downloadFile(fileId, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fileId** | **String**| The reference of the file to download | 
+
+### Return type
+
+**File**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/octet-stream
 
 
 ## indexFiles
