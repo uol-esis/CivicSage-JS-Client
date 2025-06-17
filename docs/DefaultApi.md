@@ -58,7 +58,7 @@ No authorization required
 
 ## indexFiles
 
-> indexFiles(files, opts)
+> indexFiles(files, additionalMetadata)
 
 Index new files
 
@@ -71,10 +71,8 @@ import CivicSage from 'civic_sage';
 
 let apiInstance = new CivicSage.DefaultApi();
 let files = ["null"]; // [File] | 
-let opts = {
-  'additionalMetadata': {key: "null"} // {String: String} | 
-};
-apiInstance.indexFiles(files, opts, (error, data, response) => {
+let additionalMetadata = {key: "null"}; // {String: String} | 
+apiInstance.indexFiles(files, additionalMetadata, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -89,7 +87,7 @@ apiInstance.indexFiles(files, opts, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **files** | **[File]**|  | 
- **additionalMetadata** | [**{String: String}**](Object.md)|  | [optional] 
+ **additionalMetadata** | [**{String: String}**](Object.md)|  | 
 
 ### Return type
 

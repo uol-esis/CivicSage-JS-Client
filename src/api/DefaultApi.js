@@ -91,16 +91,18 @@ export default class DefaultApi {
      * Index new files
      * This endpoint allows you to index new files by uploading them. 
      * @param {Array.<File>} files 
-     * @param {Object} opts Optional parameters
-     * @param {Object.<String, {String: String}>} [additionalMetadata] 
+     * @param {Object.<String, {String: String}>} additionalMetadata 
      * @param {module:api/DefaultApi~indexFilesCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    indexFiles(files, opts, callback) {
-      opts = opts || {};
+    indexFiles(files, additionalMetadata, callback) {
       let postBody = null;
       // verify the required parameter 'files' is set
       if (files === undefined || files === null) {
         throw new Error("Missing the required parameter 'files' when calling indexFiles");
+      }
+      // verify the required parameter 'additionalMetadata' is set
+      if (additionalMetadata === undefined || additionalMetadata === null) {
+        throw new Error("Missing the required parameter 'additionalMetadata' when calling indexFiles");
       }
 
       let pathParams = {
@@ -111,7 +113,7 @@ export default class DefaultApi {
       };
       let formParams = {
         'files': this.apiClient.buildCollectionParam(files, 'passthrough'),
-        'additionalMetadata': opts['additionalMetadata']
+        'additionalMetadata': additionalMetadata
       };
 
       let authNames = [];
