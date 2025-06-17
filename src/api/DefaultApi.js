@@ -45,23 +45,23 @@ export default class DefaultApi {
      */
 
     /**
-     * Download indexed file
-     * This endpoint allows you to download an indexed file by its reference. The file reference is required as a query parameter. 
-     * @param {String} fileId The reference of the file to download
+     * Download file
+     * This endpoint provides the specified file as a download. 
+     * @param {String} id The identifier for the file to download. 
      * @param {module:api/DefaultApi~downloadFileCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link File}
      */
-    downloadFile(fileId, callback) {
+    downloadFile(id, callback) {
       let postBody = null;
-      // verify the required parameter 'fileId' is set
-      if (fileId === undefined || fileId === null) {
-        throw new Error("Missing the required parameter 'fileId' when calling downloadFile");
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling downloadFile");
       }
 
       let pathParams = {
+        'id': id
       };
       let queryParams = {
-        'fileId': fileId
       };
       let headerParams = {
       };
@@ -73,7 +73,7 @@ export default class DefaultApi {
       let accepts = ['application/octet-stream'];
       let returnType = File;
       return this.apiClient.callApi(
-        '/download/file', 'GET',
+        '/files/{id}', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );
@@ -90,14 +90,17 @@ export default class DefaultApi {
     /**
      * Index new files
      * This endpoint allows you to index new files by uploading them. 
-     * @param {File} file 
+     * @param {Array.<File>} files 
+     * @param {Object} opts Optional parameters
+     * @param {Object.<String, {String: String}>} [additionalMetadata] 
      * @param {module:api/DefaultApi~indexFilesCallback} callback The callback function, accepting three arguments: error, data, response
      */
-    indexFiles(file, callback) {
+    indexFiles(files, opts, callback) {
+      opts = opts || {};
       let postBody = null;
-      // verify the required parameter 'file' is set
-      if (file === undefined || file === null) {
-        throw new Error("Missing the required parameter 'file' when calling indexFiles");
+      // verify the required parameter 'files' is set
+      if (files === undefined || files === null) {
+        throw new Error("Missing the required parameter 'files' when calling indexFiles");
       }
 
       let pathParams = {
@@ -107,7 +110,8 @@ export default class DefaultApi {
       let headerParams = {
       };
       let formParams = {
-        'file': file
+        'files': this.apiClient.buildCollectionParam(files, 'passthrough'),
+        'additionalMetadata': opts['additionalMetadata']
       };
 
       let authNames = [];

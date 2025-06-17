@@ -27,7 +27,7 @@ var CivicSage = require('civic_sage');
 
 
 var api = new CivicSage.DefaultApi()
-var fileId = "fileId_example"; // {String} The reference of the file to download
+var id = "id_example"; // {String} The identifier for the file to download. 
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -35,7 +35,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.downloadFile(fileId, callback);
+api.downloadFile(id, callback);
 
 ```
 
@@ -45,7 +45,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*CivicSage.DefaultApi* | [**downloadFile**](docs/DefaultApi.md#downloadFile) | **GET** /download/file | Download indexed file
+*CivicSage.DefaultApi* | [**downloadFile**](docs/DefaultApi.md#downloadFile) | **GET** /files/{id} | Download file
 *CivicSage.DefaultApi* | [**indexFiles**](docs/DefaultApi.md#indexFiles) | **POST** /index/file | Index new files
 *CivicSage.DefaultApi* | [**indexWebsite**](docs/DefaultApi.md#indexWebsite) | **POST** /index/url | Index Website
 *CivicSage.DefaultApi* | [**searchFiles**](docs/DefaultApi.md#searchFiles) | **POST** /search | Search for files

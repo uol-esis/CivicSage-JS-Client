@@ -5,5 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **url** | **String** | The URL of the website to index | 
+**additionalMetadata** | **{String: String}** |  | [optional] 
 
 

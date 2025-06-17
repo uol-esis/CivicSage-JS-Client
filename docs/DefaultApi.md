@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**downloadFile**](DefaultApi.md#downloadFile) | **GET** /download/file | Download indexed file
+[**downloadFile**](DefaultApi.md#downloadFile) | **GET** /files/{id} | Download file
 [**indexFiles**](DefaultApi.md#indexFiles) | **POST** /index/file | Index new files
 [**indexWebsite**](DefaultApi.md#indexWebsite) | **POST** /index/url | Index Website
 [**searchFiles**](DefaultApi.md#searchFiles) | **POST** /search | Search for files
@@ -13,11 +13,11 @@ Method | HTTP request | Description
 
 ## downloadFile
 
-> File downloadFile(fileId)
+> File downloadFile(id)
 
-Download indexed file
+Download file
 
-This endpoint allows you to download an indexed file by its reference. The file reference is required as a query parameter. 
+This endpoint provides the specified file as a download. 
 
 ### Example
 
@@ -25,8 +25,8 @@ This endpoint allows you to download an indexed file by its reference. The file 
 import CivicSage from 'civic_sage';
 
 let apiInstance = new CivicSage.DefaultApi();
-let fileId = "fileId_example"; // String | The reference of the file to download
-apiInstance.downloadFile(fileId, (error, data, response) => {
+let id = "id_example"; // String | The identifier for the file to download. 
+apiInstance.downloadFile(id, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -40,7 +40,7 @@ apiInstance.downloadFile(fileId, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fileId** | **String**| The reference of the file to download | 
+ **id** | **String**| The identifier for the file to download.  | 
 
 ### Return type
 
@@ -58,7 +58,7 @@ No authorization required
 
 ## indexFiles
 
-> indexFiles(file)
+> indexFiles(files, opts)
 
 Index new files
 
@@ -70,8 +70,11 @@ This endpoint allows you to index new files by uploading them.
 import CivicSage from 'civic_sage';
 
 let apiInstance = new CivicSage.DefaultApi();
-let file = "/path/to/file"; // File | 
-apiInstance.indexFiles(file, (error, data, response) => {
+let files = ["null"]; // [File] | 
+let opts = {
+  'additionalMetadata': {key: "null"} // {String: String} | 
+};
+apiInstance.indexFiles(files, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -85,7 +88,8 @@ apiInstance.indexFiles(file, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **file** | **File**|  | 
+ **files** | **[File]**|  | 
+ **additionalMetadata** | [**{String: String}**](Object.md)|  | [optional] 
 
 ### Return type
 

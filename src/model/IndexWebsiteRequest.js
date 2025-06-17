@@ -52,6 +52,9 @@ class IndexWebsiteRequest {
             if (data.hasOwnProperty('url')) {
                 obj['url'] = ApiClient.convertToType(data['url'], 'String');
             }
+            if (data.hasOwnProperty('additionalMetadata')) {
+                obj['additionalMetadata'] = ApiClient.convertToType(data['additionalMetadata'], {'String': 'String'});
+            }
         }
         return obj;
     }
@@ -86,6 +89,11 @@ IndexWebsiteRequest.RequiredProperties = ["url"];
  * @member {String} url
  */
 IndexWebsiteRequest.prototype['url'] = undefined;
+
+/**
+ * @member {Object.<String, String>} additionalMetadata
+ */
+IndexWebsiteRequest.prototype['additionalMetadata'] = undefined;
 
 
 

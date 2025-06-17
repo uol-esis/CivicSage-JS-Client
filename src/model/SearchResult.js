@@ -21,13 +21,16 @@ import ApiClient from '../ApiClient';
 class SearchResult {
     /**
      * Constructs a new <code>SearchResult</code>.
+     * Additional properties:  - none yet 
      * @alias module:model/SearchResult
+     * @param documentId {String} This identifies this text. 
+     * @param title {String} The title of the source. 
      * @param text {String} The text content of the indexed file or website. This is the embedded text that matched the search query. 
      * @param score {Number} The score of the search result. This is a measure of how well the result matches the search query. Higher scores indicate better matches. The value is between 0 and 1, where 1 is a perfect match. 
      */
-    constructor(text, score) { 
+    constructor(documentId, title, text, score) { 
         
-        SearchResult.initialize(this, text, score);
+        SearchResult.initialize(this, documentId, title, text, score);
     }
 
     /**
@@ -35,7 +38,9 @@ class SearchResult {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, text, score) { 
+    static initialize(obj, documentId, title, text, score) { 
+        obj['documentId'] = documentId;
+        obj['title'] = title;
         obj['text'] = text;
         obj['score'] = score;
     }
@@ -51,6 +56,9 @@ class SearchResult {
         if (data) {
             obj = obj || new SearchResult();
 
+            if (data.hasOwnProperty('documentId')) {
+                obj['documentId'] = ApiClient.convertToType(data['documentId'], 'String');
+            }
             if (data.hasOwnProperty('fileName')) {
                 obj['fileName'] = ApiClient.convertToType(data['fileName'], 'String');
             }
@@ -60,11 +68,17 @@ class SearchResult {
             if (data.hasOwnProperty('url')) {
                 obj['url'] = ApiClient.convertToType(data['url'], 'String');
             }
+            if (data.hasOwnProperty('title')) {
+                obj['title'] = ApiClient.convertToType(data['title'], 'String');
+            }
             if (data.hasOwnProperty('text')) {
                 obj['text'] = ApiClient.convertToType(data['text'], 'String');
             }
             if (data.hasOwnProperty('score')) {
                 obj['score'] = ApiClient.convertToType(data['score'], 'Number');
+            }
+            if (data.hasOwnProperty('additionalMetadata')) {
+                obj['additionalMetadata'] = ApiClient.convertToType(data['additionalMetadata'], {'String': 'String'});
             }
         }
         return obj;
@@ -83,6 +97,10 @@ class SearchResult {
             }
         }
         // ensure the json data is a string
+        if (data['documentId'] && !(typeof data['documentId'] === 'string' || data['documentId'] instanceof String)) {
+            throw new Error("Expected the field `documentId` to be a primitive type in the JSON string but got " + data['documentId']);
+        }
+        // ensure the json data is a string
         if (data['fileName'] && !(typeof data['fileName'] === 'string' || data['fileName'] instanceof String)) {
             throw new Error("Expected the field `fileName` to be a primitive type in the JSON string but got " + data['fileName']);
         }
@@ -95,6 +113,10 @@ class SearchResult {
             throw new Error("Expected the field `url` to be a primitive type in the JSON string but got " + data['url']);
         }
         // ensure the json data is a string
+        if (data['title'] && !(typeof data['title'] === 'string' || data['title'] instanceof String)) {
+            throw new Error("Expected the field `title` to be a primitive type in the JSON string but got " + data['title']);
+        }
+        // ensure the json data is a string
         if (data['text'] && !(typeof data['text'] === 'string' || data['text'] instanceof String)) {
             throw new Error("Expected the field `text` to be a primitive type in the JSON string but got " + data['text']);
         }
@@ -105,7 +127,13 @@ class SearchResult {
 
 }
 
-SearchResult.RequiredProperties = ["text", "score"];
+SearchResult.RequiredProperties = ["documentId", "title", "text", "score"];
+
+/**
+ * This identifies this text. 
+ * @member {String} documentId
+ */
+SearchResult.prototype['documentId'] = undefined;
 
 /**
  * The name of the file that was indexed. If this is present, it means the result is from a file. 
@@ -114,7 +142,7 @@ SearchResult.RequiredProperties = ["text", "score"];
 SearchResult.prototype['fileName'] = undefined;
 
 /**
- * The reference to the file that was indexed. If this is present, it means the result is from a file. 
+ * The identifier for the file that was indexed. If this is present, it means the result is from a file. 
  * @member {String} fileId
  */
 SearchResult.prototype['fileId'] = undefined;
@@ -124,6 +152,12 @@ SearchResult.prototype['fileId'] = undefined;
  * @member {String} url
  */
 SearchResult.prototype['url'] = undefined;
+
+/**
+ * The title of the source. 
+ * @member {String} title
+ */
+SearchResult.prototype['title'] = undefined;
 
 /**
  * The text content of the indexed file or website. This is the embedded text that matched the search query. 
@@ -136,6 +170,11 @@ SearchResult.prototype['text'] = undefined;
  * @member {Number} score
  */
 SearchResult.prototype['score'] = undefined;
+
+/**
+ * @member {Object.<String, String>} additionalMetadata
+ */
+SearchResult.prototype['additionalMetadata'] = undefined;
 
 
 
