@@ -4,10 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**downloadFile**](DefaultApi.md#downloadFile) | **GET** /files/{id} | Download file
+[**downloadFile**](DefaultApi.md#downloadFile) | **GET** /files | Download file
+[**getSystemInfo**](DefaultApi.md#getSystemInfo) | **GET** /system/info | Get system information
 [**indexFiles**](DefaultApi.md#indexFiles) | **POST** /index/file | Index new files
 [**indexWebsite**](DefaultApi.md#indexWebsite) | **POST** /index/url | Index Website
 [**searchFiles**](DefaultApi.md#searchFiles) | **POST** /search | Search for files
+[**submitFeedback**](DefaultApi.md#submitFeedback) | **POST** /feedback | 
+[**summarizeEmbeddings**](DefaultApi.md#summarizeEmbeddings) | **POST** /completions/summary | Summarize embeddings with a prompt
+[**uploadFile**](DefaultApi.md#uploadFile) | **POST** /files | Upload file
 
 
 
@@ -56,9 +60,50 @@ No authorization required
 - **Accept**: application/octet-stream
 
 
+## getSystemInfo
+
+> SystemInfo getSystemInfo()
+
+Get system information
+
+This endpoint provides information about the system. 
+
+### Example
+
+```javascript
+import CivicSage from 'civic_sage';
+
+let apiInstance = new CivicSage.DefaultApi();
+apiInstance.getSystemInfo((error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SystemInfo**](SystemInfo.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
 ## indexFiles
 
-> indexFiles(files, opts)
+> indexFiles(indexFilesRequestInner)
 
 Index new files
 
@@ -70,11 +115,8 @@ This endpoint allows you to index new files by uploading them.
 import CivicSage from 'civic_sage';
 
 let apiInstance = new CivicSage.DefaultApi();
-let files = ["null"]; // [File] | 
-let opts = {
-  'additionalMetadata': {key: "null"} // {String: String} | 
-};
-apiInstance.indexFiles(files, opts, (error, data, response) => {
+let indexFilesRequestInner = [new CivicSage.IndexFilesRequestInner()]; // [IndexFilesRequestInner] | 
+apiInstance.indexFiles(indexFilesRequestInner, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -88,8 +130,7 @@ apiInstance.indexFiles(files, opts, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **files** | **[File]**|  | 
- **additionalMetadata** | [**{String: String}**](Object.md)|  | [optional] 
+ **indexFilesRequestInner** | [**[IndexFilesRequestInner]**](IndexFilesRequestInner.md)|  | 
 
 ### Return type
 
@@ -101,7 +142,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: multipart/form-data
+- **Content-Type**: application/json
 - **Accept**: Not defined
 
 
@@ -198,5 +239,138 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## submitFeedback
+
+> String submitFeedback(feedback)
+
+
+
+### Example
+
+```javascript
+import CivicSage from 'civic_sage';
+
+let apiInstance = new CivicSage.DefaultApi();
+let feedback = new CivicSage.Feedback(); // Feedback | 
+apiInstance.submitFeedback(feedback, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **feedback** | [**Feedback**](Feedback.md)|  | 
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## summarizeEmbeddings
+
+> SummarizeEmbeddings200Response summarizeEmbeddings(summarizeEmbeddingsRequest)
+
+Summarize embeddings with a prompt
+
+This endpoint allows you to summarize embeddings using a prompt. The prompt is used to generate a summary of the embeddings. 
+
+### Example
+
+```javascript
+import CivicSage from 'civic_sage';
+
+let apiInstance = new CivicSage.DefaultApi();
+let summarizeEmbeddingsRequest = new CivicSage.SummarizeEmbeddingsRequest(); // SummarizeEmbeddingsRequest | 
+apiInstance.summarizeEmbeddings(summarizeEmbeddingsRequest, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **summarizeEmbeddingsRequest** | [**SummarizeEmbeddingsRequest**](SummarizeEmbeddingsRequest.md)|  | 
+
+### Return type
+
+[**SummarizeEmbeddings200Response**](SummarizeEmbeddings200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## uploadFile
+
+> UploadFile200Response uploadFile(file)
+
+Upload file
+
+This endpoint you to upload a file for indexing. This endpoint will **not** index the file. It is only for uploading files that you want to index later. 
+
+### Example
+
+```javascript
+import CivicSage from 'civic_sage';
+
+let apiInstance = new CivicSage.DefaultApi();
+let file = "/path/to/file"; // File | 
+apiInstance.uploadFile(file, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **file** | **File**|  | 
+
+### Return type
+
+[**UploadFile200Response**](UploadFile200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 

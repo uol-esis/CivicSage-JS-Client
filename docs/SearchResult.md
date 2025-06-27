@@ -11,6 +11,5 @@ Name | Type | Description | Notes
 **title** | **String** | The title of the source.  | 
 **text** | **String** | The text content of the indexed file or website. This is the embedded text that matched the search query.  | 
 **score** | **Number** | The score of the search result. This is a measure of how well the result matches the search query. Higher scores indicate better matches. The value is between 0 and 1, where 1 is a perfect match.  | 
-**additionalMetadata** | **{String: String}** |  | [optional] 
 
 

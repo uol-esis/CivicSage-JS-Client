@@ -1,10 +1,10 @@
-# CivicSage.IndexWebsiteRequest
+# CivicSage.IndexFilesRequestInner
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**url** | **String** | The URL of the website to index | 
+**fileId** | **String** |  | 
 **name** | **String** |  | 
 
 

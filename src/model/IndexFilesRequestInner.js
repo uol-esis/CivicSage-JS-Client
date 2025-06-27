@@ -14,21 +14,21 @@
 import ApiClient from '../ApiClient';
 
 /**
- * The IndexWebsiteRequest model module.
- * @module model/IndexWebsiteRequest
+ * The IndexFilesRequestInner model module.
+ * @module model/IndexFilesRequestInner
  * @version 0.2.0
  */
-class IndexWebsiteRequest {
+class IndexFilesRequestInner {
     /**
-     * Constructs a new <code>IndexWebsiteRequest</code>.
-     * @alias module:model/IndexWebsiteRequest
+     * Constructs a new <code>IndexFilesRequestInner</code>.
+     * @alias module:model/IndexFilesRequestInner
      * @extends Object
-     * @param url {String} The URL of the website to index
+     * @param fileId {String} 
      * @param name {String} 
      */
-    constructor(url, name) { 
+    constructor(fileId, name) { 
         
-        IndexWebsiteRequest.initialize(this, url, name);
+        IndexFilesRequestInner.initialize(this, fileId, name);
     }
 
     /**
@@ -36,27 +36,27 @@ class IndexWebsiteRequest {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, url, name) { 
-        obj['url'] = url;
+    static initialize(obj, fileId, name) { 
+        obj['fileId'] = fileId;
         obj['name'] = name;
     }
 
     /**
-     * Constructs a <code>IndexWebsiteRequest</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>IndexFilesRequestInner</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/IndexWebsiteRequest} obj Optional instance to populate.
-     * @return {module:model/IndexWebsiteRequest} The populated <code>IndexWebsiteRequest</code> instance.
+     * @param {module:model/IndexFilesRequestInner} obj Optional instance to populate.
+     * @return {module:model/IndexFilesRequestInner} The populated <code>IndexFilesRequestInner</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new IndexWebsiteRequest();
+            obj = obj || new IndexFilesRequestInner();
 
             ApiClient.constructFromObject(data, obj, 'Object');
             
 
-            if (data.hasOwnProperty('url')) {
-                obj['url'] = ApiClient.convertToType(data['url'], 'String');
+            if (data.hasOwnProperty('fileId')) {
+                obj['fileId'] = ApiClient.convertToType(data['fileId'], 'String');
             }
             if (data.hasOwnProperty('name')) {
                 obj['name'] = ApiClient.convertToType(data['name'], 'String');
@@ -66,20 +66,20 @@ class IndexWebsiteRequest {
     }
 
     /**
-     * Validates the JSON data with respect to <code>IndexWebsiteRequest</code>.
+     * Validates the JSON data with respect to <code>IndexFilesRequestInner</code>.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>IndexWebsiteRequest</code>.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>IndexFilesRequestInner</code>.
      */
     static validateJSON(data) {
         // check to make sure all required properties are present in the JSON string
-        for (const property of IndexWebsiteRequest.RequiredProperties) {
+        for (const property of IndexFilesRequestInner.RequiredProperties) {
             if (!data.hasOwnProperty(property)) {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
         }
         // ensure the json data is a string
-        if (data['url'] && !(typeof data['url'] === 'string' || data['url'] instanceof String)) {
-            throw new Error("Expected the field `url` to be a primitive type in the JSON string but got " + data['url']);
+        if (data['fileId'] && !(typeof data['fileId'] === 'string' || data['fileId'] instanceof String)) {
+            throw new Error("Expected the field `fileId` to be a primitive type in the JSON string but got " + data['fileId']);
         }
         // ensure the json data is a string
         if (data['name'] && !(typeof data['name'] === 'string' || data['name'] instanceof String)) {
@@ -92,23 +92,22 @@ class IndexWebsiteRequest {
 
 }
 
-IndexWebsiteRequest.RequiredProperties = ["url", "name"];
+IndexFilesRequestInner.RequiredProperties = ["fileId", "name"];
 
 /**
- * The URL of the website to index
- * @member {String} url
+ * @member {String} fileId
  */
-IndexWebsiteRequest.prototype['url'] = undefined;
+IndexFilesRequestInner.prototype['fileId'] = undefined;
 
 /**
  * @member {String} name
  */
-IndexWebsiteRequest.prototype['name'] = undefined;
+IndexFilesRequestInner.prototype['name'] = undefined;
 
 
 
 
 
 
-export default IndexWebsiteRequest;
+export default IndexFilesRequestInner;
 
