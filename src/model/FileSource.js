@@ -14,20 +14,22 @@
 import ApiClient from '../ApiClient';
 
 /**
- * The IndexFilesRequestInner model module.
- * @module model/IndexFilesRequestInner
+ * The FileSource model module.
+ * @module model/FileSource
  * @version 0.3.0
  */
-class IndexFilesRequestInner {
+class FileSource {
     /**
-     * Constructs a new <code>IndexFilesRequestInner</code>.
-     * @alias module:model/IndexFilesRequestInner
+     * Constructs a new <code>FileSource</code>.
+     * @alias module:model/FileSource
      * @extends Object
-     * @param fileId {String} The id returned by the upload endpoint
+     * @param fileId {String} The unique identifier for the indexed file
+     * @param fileName {String} The name of the indexed file
+     * @param title {String} The title of the indexed file, used in search results
      */
-    constructor(fileId) { 
+    constructor(fileId, fileName, title) { 
         
-        IndexFilesRequestInner.initialize(this, fileId);
+        FileSource.initialize(this, fileId, fileName, title);
     }
 
     /**
@@ -35,20 +37,22 @@ class IndexFilesRequestInner {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, fileId) { 
+    static initialize(obj, fileId, fileName, title) { 
         obj['fileId'] = fileId;
+        obj['fileName'] = fileName;
+        obj['title'] = title;
     }
 
     /**
-     * Constructs a <code>IndexFilesRequestInner</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>FileSource</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/IndexFilesRequestInner} obj Optional instance to populate.
-     * @return {module:model/IndexFilesRequestInner} The populated <code>IndexFilesRequestInner</code> instance.
+     * @param {module:model/FileSource} obj Optional instance to populate.
+     * @return {module:model/FileSource} The populated <code>FileSource</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new IndexFilesRequestInner();
+            obj = obj || new FileSource();
 
             ApiClient.constructFromObject(data, obj, 'Object');
             
@@ -56,24 +60,24 @@ class IndexFilesRequestInner {
             if (data.hasOwnProperty('fileId')) {
                 obj['fileId'] = ApiClient.convertToType(data['fileId'], 'String');
             }
+            if (data.hasOwnProperty('fileName')) {
+                obj['fileName'] = ApiClient.convertToType(data['fileName'], 'String');
+            }
             if (data.hasOwnProperty('title')) {
                 obj['title'] = ApiClient.convertToType(data['title'], 'String');
-            }
-            if (data.hasOwnProperty('date')) {
-                obj['date'] = ApiClient.convertToType(data['date'], 'Date');
             }
         }
         return obj;
     }
 
     /**
-     * Validates the JSON data with respect to <code>IndexFilesRequestInner</code>.
+     * Validates the JSON data with respect to <code>FileSource</code>.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>IndexFilesRequestInner</code>.
+     * @return {boolean} to indicate whether the JSON data is valid with respect to <code>FileSource</code>.
      */
     static validateJSON(data) {
         // check to make sure all required properties are present in the JSON string
-        for (const property of IndexFilesRequestInner.RequiredProperties) {
+        for (const property of FileSource.RequiredProperties) {
             if (!data.hasOwnProperty(property)) {
                 throw new Error("The required field `" + property + "` is not found in the JSON data: " + JSON.stringify(data));
             }
@@ -81,6 +85,10 @@ class IndexFilesRequestInner {
         // ensure the json data is a string
         if (data['fileId'] && !(typeof data['fileId'] === 'string' || data['fileId'] instanceof String)) {
             throw new Error("Expected the field `fileId` to be a primitive type in the JSON string but got " + data['fileId']);
+        }
+        // ensure the json data is a string
+        if (data['fileName'] && !(typeof data['fileName'] === 'string' || data['fileName'] instanceof String)) {
+            throw new Error("Expected the field `fileName` to be a primitive type in the JSON string but got " + data['fileName']);
         }
         // ensure the json data is a string
         if (data['title'] && !(typeof data['title'] === 'string' || data['title'] instanceof String)) {
@@ -93,30 +101,30 @@ class IndexFilesRequestInner {
 
 }
 
-IndexFilesRequestInner.RequiredProperties = ["fileId"];
+FileSource.RequiredProperties = ["fileId", "fileName", "title"];
 
 /**
- * The id returned by the upload endpoint
+ * The unique identifier for the indexed file
  * @member {String} fileId
  */
-IndexFilesRequestInner.prototype['fileId'] = undefined;
+FileSource.prototype['fileId'] = undefined;
 
 /**
- * The title of the file used in search results. Defaults to the file name without the file ending. 
+ * The name of the indexed file
+ * @member {String} fileName
+ */
+FileSource.prototype['fileName'] = undefined;
+
+/**
+ * The title of the indexed file, used in search results
  * @member {String} title
  */
-IndexFilesRequestInner.prototype['title'] = undefined;
-
-/**
- * A date associated with the file. This can be used to filter search results by date. 
- * @member {Date} date
- */
-IndexFilesRequestInner.prototype['date'] = undefined;
+FileSource.prototype['title'] = undefined;
 
 
 
 
 
 
-export default IndexFilesRequestInner;
+export default FileSource;
 

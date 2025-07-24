@@ -4,15 +4,63 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**deleteIndexedSource**](DefaultApi.md#deleteIndexedSource) | **DELETE** /sources | Delete indexed source
 [**downloadFile**](DefaultApi.md#downloadFile) | **GET** /files | Download file
+[**getAllIndexedSources**](DefaultApi.md#getAllIndexedSources) | **GET** /sources | Get all indexed sources
+[**getMetadataKeys**](DefaultApi.md#getMetadataKeys) | **GET** /system/metadata-keys | Get metadata keys
 [**getSystemInfo**](DefaultApi.md#getSystemInfo) | **GET** /system/info | Get system information
 [**indexFiles**](DefaultApi.md#indexFiles) | **POST** /index/file | Index new files
 [**indexWebsite**](DefaultApi.md#indexWebsite) | **POST** /index/url | Index Website
 [**searchFiles**](DefaultApi.md#searchFiles) | **POST** /search | Search for files
-[**submitFeedback**](DefaultApi.md#submitFeedback) | **POST** /feedback | 
+[**submitFeedback**](DefaultApi.md#submitFeedback) | **POST** /feedback | Submit feedback
 [**summarizeEmbeddings**](DefaultApi.md#summarizeEmbeddings) | **POST** /completions/summary | Summarize embeddings with a prompt
 [**uploadFile**](DefaultApi.md#uploadFile) | **POST** /files | Upload file
 
+
+
+## deleteIndexedSource
+
+> deleteIndexedSource(id)
+
+Delete indexed source
+
+This endpoint allows you to delete an indexed source by its ID. The ID can be either a fileId or a websiteId. If deleting a file, the file will be removed from storage. 
+
+### Example
+
+```javascript
+import CivicSage from 'civic_sage';
+
+let apiInstance = new CivicSage.DefaultApi();
+let id = "id_example"; // String | The identifier for the source to delete. This can be either a fileId or a websiteId. 
+apiInstance.deleteIndexedSource(id, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| The identifier for the source to delete. This can be either a fileId or a websiteId.  | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
 ## downloadFile
@@ -58,6 +106,94 @@ No authorization required
 
 - **Content-Type**: Not defined
 - **Accept**: application/octet-stream
+
+
+## getAllIndexedSources
+
+> GetAllIndexedSources200Response getAllIndexedSources(opts)
+
+Get all indexed sources
+
+This endpoint retrieves a list of all indexed sources, including files and websites. 
+
+### Example
+
+```javascript
+import CivicSage from 'civic_sage';
+
+let apiInstance = new CivicSage.DefaultApi();
+let opts = {
+  'filterExpression': "filterExpression_example" // String | An optional filter expression to filter the indexed sources. This can be used to filter results based on specific criteria. The syntax of the filter expression can be found in the server documentation. 
+};
+apiInstance.getAllIndexedSources(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **filterExpression** | **String**| An optional filter expression to filter the indexed sources. This can be used to filter results based on specific criteria. The syntax of the filter expression can be found in the server documentation.  | [optional] 
+
+### Return type
+
+[**GetAllIndexedSources200Response**](GetAllIndexedSources200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## getMetadataKeys
+
+> GetMetadataKeys200Response getMetadataKeys()
+
+Get metadata keys
+
+This endpoint provides the metadata keys that are supported for searching. This list includes custom keys provided via additional properties. All keys are complete. So there is no need to add &#x60;additionalProperties.&#x60; for custom keys. 
+
+### Example
+
+```javascript
+import CivicSage from 'civic_sage';
+
+let apiInstance = new CivicSage.DefaultApi();
+apiInstance.getMetadataKeys((error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**GetMetadataKeys200Response**](GetMetadataKeys200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
 ## getSystemInfo
@@ -246,7 +382,9 @@ No authorization required
 
 > String submitFeedback(feedback)
 
+Submit feedback
 
+This endpoint allows you to submit feedback. The feedback can be an arbitrary string. 
 
 ### Example
 

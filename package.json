@@ -1,6 +1,6 @@
 {
   "name": "civic_sage",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "CivicSage is a service that allows you to index files and websites. ",
   "license": "Unlicense",
   "main": "dist/index.js",
