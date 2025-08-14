@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**searchFiles**](DefaultApi.md#searchFiles) | **POST** /search | Search for files
 [**submitFeedback**](DefaultApi.md#submitFeedback) | **POST** /feedback | Submit feedback
 [**summarizeEmbeddings**](DefaultApi.md#summarizeEmbeddings) | **POST** /completions/summary | Summarize embeddings with a prompt
+[**updateIndexedWebsite**](DefaultApi.md#updateIndexedWebsite) | **POST** /sources/websites/update | Update indexed website
 [**uploadFile**](DefaultApi.md#uploadFile) | **POST** /files | Upload file
 
 
@@ -466,6 +467,51 @@ No authorization required
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+
+
+## updateIndexedWebsite
+
+> updateIndexedWebsite(updateIndexedWebsiteRequest)
+
+Update indexed website
+
+This endpoint allows you to update indexed website sources. It requires an array of websiteIds to update the corresponding sources. If the list is empty, all indexed websites will be updated. If the list contains specific websiteIds, only those will be updated. If the list contains a websiteId that does not exist, it will be ignored. 
+
+### Example
+
+```javascript
+import CivicSage from 'civic_sage';
+
+let apiInstance = new CivicSage.DefaultApi();
+let updateIndexedWebsiteRequest = new CivicSage.UpdateIndexedWebsiteRequest(); // UpdateIndexedWebsiteRequest | 
+apiInstance.updateIndexedWebsite(updateIndexedWebsiteRequest, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **updateIndexedWebsiteRequest** | [**UpdateIndexedWebsiteRequest**](UpdateIndexedWebsiteRequest.md)|  | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
 
 ## uploadFile

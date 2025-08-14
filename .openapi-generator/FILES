@@ -12,6 +12,7 @@ docs/SearchResult.md
 docs/SummarizeEmbeddings200Response.md
 docs/SummarizeEmbeddingsRequest.md
 docs/SystemInfo.md
+docs/UpdateIndexedWebsiteRequest.md
 docs/UploadFile200Response.md
 docs/WebsiteSource.md
 mocha.opts
@@ -30,5 +31,6 @@ src/model/SearchResult.js
 src/model/SummarizeEmbeddings200Response.js
 src/model/SummarizeEmbeddingsRequest.js
 src/model/SystemInfo.js
+src/model/UpdateIndexedWebsiteRequest.js
 src/model/UploadFile200Response.js
 src/model/WebsiteSource.js
