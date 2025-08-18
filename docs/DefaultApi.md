@@ -4,19 +4,65 @@ All URIs are relative to *http://localhost:8080/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**deleteChat**](DefaultApi.md#deleteChat) | **DELETE** /completions/chat | Delete a chat
 [**deleteIndexedSource**](DefaultApi.md#deleteIndexedSource) | **DELETE** /sources | Delete indexed source
 [**downloadFile**](DefaultApi.md#downloadFile) | **GET** /files | Download file
 [**getAllIndexedSources**](DefaultApi.md#getAllIndexedSources) | **GET** /sources | Get all indexed sources
+[**getChat**](DefaultApi.md#getChat) | **GET** /completions/chat | Create or retrieve a chat
 [**getMetadataKeys**](DefaultApi.md#getMetadataKeys) | **GET** /system/metadata-keys | Get metadata keys
 [**getSystemInfo**](DefaultApi.md#getSystemInfo) | **GET** /system/info | Get system information
 [**indexFiles**](DefaultApi.md#indexFiles) | **POST** /index/file | Index new files
 [**indexWebsite**](DefaultApi.md#indexWebsite) | **POST** /index/url | Index Website
 [**searchFiles**](DefaultApi.md#searchFiles) | **POST** /search | Search for files
+[**sendMessage**](DefaultApi.md#sendMessage) | **POST** /completions/chat | Send a message in a chat
 [**submitFeedback**](DefaultApi.md#submitFeedback) | **POST** /feedback | Submit feedback
-[**summarizeEmbeddings**](DefaultApi.md#summarizeEmbeddings) | **POST** /completions/summary | Summarize embeddings with a prompt
+[**updateChat**](DefaultApi.md#updateChat) | **PATCH** /completions/chat | Update a chat
 [**updateIndexedWebsite**](DefaultApi.md#updateIndexedWebsite) | **POST** /sources/websites/update | Update indexed website
 [**uploadFile**](DefaultApi.md#uploadFile) | **POST** /files | Upload file
 
+
+
+## deleteChat
+
+> deleteChat(chatId)
+
+Delete a chat
+
+### Example
+
+```javascript
+import CivicSage from 'civic_sage';
+
+let apiInstance = new CivicSage.DefaultApi();
+let chatId = "chatId_example"; // String | The unique identifier for the chat session
+apiInstance.deleteChat(chatId, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **chatId** | **String**| The unique identifier for the chat session | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
 ## deleteIndexedSource
@@ -145,6 +191,51 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetAllIndexedSources200Response**](GetAllIndexedSources200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## getChat
+
+> Chat getChat(opts)
+
+Create or retrieve a chat
+
+### Example
+
+```javascript
+import CivicSage from 'civic_sage';
+
+let apiInstance = new CivicSage.DefaultApi();
+let opts = {
+  'chatId': "chatId_example" // String | The unique identifier for the chat session
+};
+apiInstance.getChat(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **chatId** | **String**| The unique identifier for the chat session | [optional] 
+
+### Return type
+
+[**Chat**](Chat.md)
 
 ### Authorization
 
@@ -379,6 +470,51 @@ No authorization required
 - **Accept**: application/json
 
 
+## sendMessage
+
+> Chat sendMessage(chatId, chatMessage)
+
+Send a message in a chat
+
+### Example
+
+```javascript
+import CivicSage from 'civic_sage';
+
+let apiInstance = new CivicSage.DefaultApi();
+let chatId = "chatId_example"; // String | The unique identifier for the chat session
+let chatMessage = new CivicSage.ChatMessage(); // ChatMessage | 
+apiInstance.sendMessage(chatId, chatMessage, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **chatId** | **String**| The unique identifier for the chat session | 
+ **chatMessage** | [**ChatMessage**](ChatMessage.md)|  | 
+
+### Return type
+
+[**Chat**](Chat.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
 ## submitFeedback
 
 > String submitFeedback(feedback)
@@ -424,13 +560,11 @@ No authorization required
 - **Accept**: application/json
 
 
-## summarizeEmbeddings
+## updateChat
 
-> SummarizeEmbeddings200Response summarizeEmbeddings(summarizeEmbeddingsRequest)
+> updateChat(chatId, chat)
 
-Summarize embeddings with a prompt
-
-This endpoint allows you to summarize embeddings using a prompt. The prompt is used to generate a summary of the embeddings. 
+Update a chat
 
 ### Example
 
@@ -438,12 +572,13 @@ This endpoint allows you to summarize embeddings using a prompt. The prompt is u
 import CivicSage from 'civic_sage';
 
 let apiInstance = new CivicSage.DefaultApi();
-let summarizeEmbeddingsRequest = new CivicSage.SummarizeEmbeddingsRequest(); // SummarizeEmbeddingsRequest | 
-apiInstance.summarizeEmbeddings(summarizeEmbeddingsRequest, (error, data, response) => {
+let chatId = "chatId_example"; // String | The unique identifier for the chat session
+let chat = new CivicSage.Chat(); // Chat | 
+apiInstance.updateChat(chatId, chat, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully. Returned data: ' + data);
+    console.log('API called successfully.');
   }
 });
 ```
@@ -453,11 +588,12 @@ apiInstance.summarizeEmbeddings(summarizeEmbeddingsRequest, (error, data, respon
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **summarizeEmbeddingsRequest** | [**SummarizeEmbeddingsRequest**](SummarizeEmbeddingsRequest.md)|  | 
+ **chatId** | **String**| The unique identifier for the chat session | 
+ **chat** | [**Chat**](Chat.md)|  | 
 
 ### Return type
 
-[**SummarizeEmbeddings200Response**](SummarizeEmbeddings200Response.md)
+null (empty response body)
 
 ### Authorization
 
@@ -466,7 +602,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: Not defined
 
 
 ## updateIndexedWebsite
@@ -516,7 +652,7 @@ No authorization required
 
 ## uploadFile
 
-> UploadFile200Response uploadFile(file)
+> UploadFile200Response uploadFile(file, opts)
 
 Upload file
 
@@ -529,7 +665,10 @@ import CivicSage from 'civic_sage';
 
 let apiInstance = new CivicSage.DefaultApi();
 let file = "/path/to/file"; // File | 
-apiInstance.uploadFile(file, (error, data, response) => {
+let opts = {
+  'temporary': false // Boolean | If set to true, the file will be stored temporarily and deleted after some time. If set to false, the file will be stored permanently. Temporary files cannot be indexed. They should be used in chats. 
+};
+apiInstance.uploadFile(file, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -544,6 +683,7 @@ apiInstance.uploadFile(file, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file** | **File**|  | 
+ **temporary** | **Boolean**| If set to true, the file will be stored temporarily and deleted after some time. If set to false, the file will be stored permanently. Temporary files cannot be indexed. They should be used in chats.  | [optional] [default to false]
 
 ### Return type
 

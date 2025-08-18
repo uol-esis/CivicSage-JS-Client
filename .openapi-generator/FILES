@@ -1,5 +1,7 @@
 .babelrc
 README.md
+docs/Chat.md
+docs/ChatMessage.md
 docs/DefaultApi.md
 docs/Feedback.md
 docs/FileSource.md
@@ -9,8 +11,6 @@ docs/IndexFilesRequestInner.md
 docs/IndexWebsiteRequest.md
 docs/SearchQuery.md
 docs/SearchResult.md
-docs/SummarizeEmbeddings200Response.md
-docs/SummarizeEmbeddingsRequest.md
 docs/SystemInfo.md
 docs/UpdateIndexedWebsiteRequest.md
 docs/UploadFile200Response.md
@@ -20,6 +20,8 @@ package.json
 src/ApiClient.js
 src/api/DefaultApi.js
 src/index.js
+src/model/Chat.js
+src/model/ChatMessage.js
 src/model/Feedback.js
 src/model/FileSource.js
 src/model/GetAllIndexedSources200Response.js
@@ -28,8 +30,6 @@ src/model/IndexFilesRequestInner.js
 src/model/IndexWebsiteRequest.js
 src/model/SearchQuery.js
 src/model/SearchResult.js
-src/model/SummarizeEmbeddings200Response.js
-src/model/SummarizeEmbeddingsRequest.js
 src/model/SystemInfo.js
 src/model/UpdateIndexedWebsiteRequest.js
 src/model/UploadFile200Response.js
