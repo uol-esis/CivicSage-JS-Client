@@ -1,6 +1,7 @@
 .babelrc
 README.md
 docs/Chat.md
+docs/ChatFile.md
 docs/ChatMessage.md
 docs/DefaultApi.md
 docs/Feedback.md
@@ -21,6 +22,7 @@ src/ApiClient.js
 src/api/DefaultApi.js
 src/index.js
 src/model/Chat.js
+src/model/ChatFile.js
 src/model/ChatMessage.js
 src/model/Feedback.js
 src/model/FileSource.js
