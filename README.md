@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> Moved to [Monorepo](https://github.com/uol-esis/CivicSage)
+
 # civic_sage
 
 CivicSage - JavaScript client for civic_sage
